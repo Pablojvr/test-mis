@@ -64,7 +64,7 @@
       <div class="row">
         <div
           :key="t.idtarea"
-          v-for="t in tareas"
+          v-for="(t, index) in tareas"
           class="mb-5 col-md-4 col-lg-4 col-sm-12"
         >
           <div class="card text-center">
@@ -89,7 +89,7 @@
             <div class="card-footer text-muted">
               <a
                 href="#"
-                @click.prevent="eliminarTarea(t.idtarea)"
+                @click.prevent="eliminarTarea( index)"
                 class="btn btn-danger"
                 >Eliminar</a
               >
@@ -121,7 +121,7 @@ export default {
   },
   methods: {
     agregarTarea() {
-      this.tarea.idtarea = this.tareas.length + 1;
+      this.tarea.idtarea = Math.random() * 100;
       this.tareas.push(this.tarea);
       this.$store.commit("ADD_TAREA");
       this.tarea = {
@@ -134,10 +134,12 @@ export default {
 
       this.saveTareas();
     },
-    eliminarTarea(id) {
+    eliminarTarea(index) {
       const text = "Esta seguro de eliminar esta tarea?";
       if (confirm(text) == true) {
-        this.tareas = this.tareas.filter((tarea) => tarea.idtarea !== id);
+
+        this.tareas.splice( index , 1); 
+
         this.$store.commit("DELETE_TAREA");
         this.saveTareas();
       } else {
