@@ -43,9 +43,9 @@
                   id="inputState"
                   class="form-control"
                 >
-                  <option :value="1" selected>Low</option>
-                  <option :value="2">Medium</option>
-                  <option :value="3">High</option>
+                  <option :value="'Low'" selected>Low</option>
+                  <option :value="'Medium'">Medium</option>
+                  <option :value="'High'">High</option>
                 </select>
               </div>
             </div>
@@ -114,7 +114,7 @@ export default {
         titulo: "",
         responsable: "",
         descripcion: "",
-        prioridad: 1,
+        prioridad: 'Low',
       },
       tareas: [],
     };
@@ -129,7 +129,7 @@ export default {
         titulo: "",
         responsable: "",
         descripcion: "",
-        prioridad: 1,
+        prioridad: 'Low',
       };
 
       this.saveTareas();
